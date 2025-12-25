@@ -1,6 +1,3 @@
-let humanScore = 0;
-let computerScore = 0;
-
 function getComputerChoice(){
     const intRand = Math.random();
     let rpsSelect = null;
@@ -21,7 +18,11 @@ function getHumanChoice(){
     return humanInput;
 }
 
-function playRound(humanChoice, computerChoice){
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+    
+    function playRound(humanChoice, computerChoice){
     humanChoice.toLowerCase();
     if (humanChoice == "rock" && computerChoice == "scissors" || 
     humanChoice == "paper" && computerChoice == "rock" || 
@@ -38,14 +39,28 @@ function playRound(humanChoice, computerChoice){
         return;
     }
     else {
-        console.log("You tied! " + computerChoice.toUpperCase() + " doesn't beat " + computerChoice.toUpperCase());
+        console.log("You tied! " + humanChoice.toUpperCase() + " doesn't beat " + computerChoice.toUpperCase());
         return;
     }
 }
+    for(var i = 1; i <= 5; i++){
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+    if(humanScore > computerScore){
+        console.log("You won! \nYou beat the computer " + humanScore + " to " + computerScore);
+    }
+    else if(computerScore > humanScore){
+        console.log("You lost! The score was " + computerScore + " to " + humanScore);
+    }
+    else{
+        console.log("It was so close! Try again to beat the computer. \nThe score was " + humanScore + " to " + computerScore);
+    }
+}
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+playGame();
 
-console.log(humanSelection + "\n" + computerSelection);
-playRound(humanSelection, computerSelection);
+
+
 
